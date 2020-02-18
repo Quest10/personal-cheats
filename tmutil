@@ -1,0 +1,10 @@
+---
+tags: [mac, backup]
+---
+#Ref:man tmutil
+
+#Start backup
+tmutil startbackup
+
+#Set a destination
+tmutil protocol://user[:pass]@host/share
