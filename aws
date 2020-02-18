@@ -1,0 +1,21 @@
+# Get temporary credentials
+# Ref: https://aws.amazon.com/es/premiumsupport/knowledge-center/authenticate-mfa-cli/
+# serial-number is in format arn:aws:iam::123456789012:mfa/user
+aws sts get-session-token --serial-number <serial-number> --token-code <token_from_google_authenticator>
+
+# Example script for assume a role temporaly
+ASSUMED_CREDENTIALS="$(aws \
+  sts assume-role \
+  --role-arn="arn:aws:iam::123456789012:role/<rol>" \
+  --role-session-name="<name>" \
+  --duration=<duration>
+)"
+export "AWS_ACCESS_KEY_ID=$(echo "${ASSUMED_CREDENTIALS}" | jq -re '.Credentials.AccessKeyId')"
+export "AWS_SECRET_ACCESS_KEY=$(echo "${ASSUMED_CREDENTIALS}" | jq -re '.Credentials.SecretAccessKey')"
+export "AWS_SESSION_TOKEN=$(echo "${ASSUMED_CREDENTIALS}" | jq -re '.Credentials.SessionToken')"
+
+# List a bucket of a profile
+aws --profile=<profile_name> s3 ls s3://<bucket_name>
+
+# Copy to local the content of a prefix in a bucket (recursively)
+aws s3 cp s3://<bucket_name>/<prefix>/ <local_directory_destiny> --recursive

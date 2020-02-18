@@ -1,0 +1,13 @@
+---
+tags: [ kubernetes, k8s ]
+---
+
+# Update configmap from file
+# Ref: https://stackoverflow.com/questions/38216278/update-k8s-configmap-or-secret-without-deleting-the-existing-one
+kubectl create configmap <configmap name> --from-file foo.properties -o yaml --dry-run | kubectl replace -f -
+
+# Apply existing, in existing namespace, secret to another namespaces
+kubectl get secret <secret> --namespace=<namespace of origin> --export -o yaml | kubectl apply --namespace=<new namespace> -f - 
+
+# Copy a file to a pod
+kubectl cp <file> <some-namespace>/<some-pod>:/<path>/
