@@ -30,3 +30,9 @@ docker images
 
 # To remove unused data + unused images + volumes (docker-1.25+)
 docker system prune -a --volumes
+
+# To save a copy of the image to a file
+docker save <image-name> > <file-name>
+
+# Load a container image from a file
+docker load < <file-name>
