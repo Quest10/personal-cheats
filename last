@@ -1,0 +1,9 @@
+---
+tags: [ security, ssh, audit ]
+---
+
+# Show IPs/users logged in system
+last
+
+# Search IPs/users whem the log file has been rotated "wtmp begins {date before our date of interest}
+last -f /var/log/wtmp.{1..n}
