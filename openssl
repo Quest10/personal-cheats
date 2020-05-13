@@ -26,6 +26,9 @@ openssl x509 -noout -enddate
 # To generate Diffie-Hellman parameters:
 openssl dhparam -outform PEM -out dhparams.pem 2048
 
+# To get issuer of a certificate
+openssl x509 -noout -issuer -in server.csr
+
 # To show SSL cert of a host. In a example a LDAP server
 # By Commad Line Magic via Twitter (https://mobile.twitter.com/climagic/status/1242459156017303552)
 # For another options view nmap
