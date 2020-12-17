@@ -1,0 +1,3 @@
+
+# To convert a svg file with a transparent background
+mogrify -background none -format png /path/to/source/file.svg
